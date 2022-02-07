@@ -9,6 +9,48 @@ module.exports = {
         lg: '1279px',
         xl: '1919px',
     },
+    fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+    },
+    fontSize: {
+        xs: [
+            '12px',
+            {
+                lineHeight: '18px',
+            },
+        ],
+        sm: [
+            '14px',
+            {
+                lineHeight: '20px',
+            },
+        ],
+        base: [
+            '16px',
+            {
+                lineHeight: '24px',
+            },
+        ],
+        lg: [
+            '24px',
+            {
+                lineHeight: '32px',
+            },
+        ],
+        xl: [
+            '30px',
+            {
+                lineHeight: '38px',
+            },
+        ],
+        '2xl': [
+            '36px',
+            {
+                lineHeight: '44px',
+                letterSpacing: '-2%',
+            },
+        ],
+    },
     colors: {
         primary: {
             700: '#6941C6',
