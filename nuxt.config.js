@@ -50,10 +50,27 @@ export default {
             },
         ],
         link: [{
-            rel: 'icon',
-            type: 'image/x-icon',
-            href: '/favicon.png',
-        }, ],
+                hid: 'favicon',
+                rel: 'icon',
+                type: 'image/x-icon',
+                href: '/favicon.png',
+            },
+            {
+                hid: 'google-api-preconnect',
+                rel: 'preconnect',
+                href: 'https://fonts.googleapis.com',
+            },
+            {
+                hid: 'g-static-preconnect',
+                rel: 'preconnect',
+                href: 'https://fonts.gstatic.com',
+            },
+            {
+                hid: 'inter-google-fonts',
+                rel: 'stylesheet',
+                href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap',
+            },
+        ],
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
