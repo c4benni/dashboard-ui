@@ -1,7 +1,7 @@
 import errorColors from './errorColors'
 import primaryColors from './primaryColors'
 import sizes from './sizes'
-import { trimmedLowerCase } from '~/components/utils'
+import { htmlAnchorAttrs, trimmedLowerCase } from '~/components/utils'
 
 export default {
     primaryColors,
@@ -22,10 +22,7 @@ export default {
 
     anchorAttrs() {
         if (this.getTag === 'a') {
-            return {
-                _target: 'blank',
-                rel: 'noopener',
-            }
+            return htmlAnchorAttrs
         }
         return {}
     },
