@@ -2,17 +2,18 @@ import { mount } from '@vue/test-utils'
 import UiText from './index.vue'
 import { isVueInstance } from '@/test/utils'
 
-describe('UiText', () => {
-    const name = 'UiText'
+const component = 'UiText'
+
+describe(component, () => {
     const text = 'hello world'
-    const testId = `[data-test-id="${name}"]`
+    const testId = `[data-test-id="${component}"]`
 
     const wrapper = mount(UiText, {
         slots: {
             default: text,
         },
         attrs: {
-            'data-test-id': name,
+            'data-test-id': component,
         },
     })
 
