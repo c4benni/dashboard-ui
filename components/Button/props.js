@@ -8,6 +8,8 @@ export default {
     autofocus: Boolean,
     destructive: Boolean,
     iconName: undefinedStringProp,
+    label: undefinedStringProp,
+    title: undefinedStringProp,
     icon: {
         type: String,
         default: undefined,
