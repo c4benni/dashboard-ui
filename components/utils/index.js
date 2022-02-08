@@ -1,3 +1,31 @@
+import Breakpoint from './breakpoint'
+
+export const breakpointConfig = {
+    xxs: '0',
+    xs: '349px',
+    sm: '599px',
+    md: '959px',
+    lg: '1279px',
+    xl: '1919px',
+}
+
+export function initBreakpoint() {
+    if (this.$store.state.breakpoint.inactive) {
+        const dispatch = (payload) =>
+            this.$store.dispatch('updateBreakpoint', payload)
+
+        const breakpoints = new Breakpoint({
+            config: breakpointConfig,
+            useOrientation: true,
+            onChange: (evt) => {
+                dispatch(evt)
+            },
+        })
+
+        dispatch(breakpoints)
+    }
+}
+
 export const requiredProp = (type) => ({
     type,
     required: true,
@@ -37,4 +65,26 @@ export function kebabCase(string) {
       .toLowerCase()
   }
   return ''
+}
+
+export const htmlAnchorAttrs = {
+  target: '_blank',
+  rel: 'noreferrer noopener',
+}
+
+export function nextAnimFrame() {
+  return new Promise((resolve) => {
+    requestAnimationFrame(resolve)
+  })
+}
+
+export const mediaListener = ({ media, callback }) => {
+  try {
+    media.addEventListener('change', callback)
+  } catch (e) {
+    // older browser work around. Hey safari iphone 8!
+    if (/undefined is not a function/i.test(e.message)) {
+      media?.addListener?.(callback)
+    }
+  }
 }
