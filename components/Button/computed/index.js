@@ -1,10 +1,12 @@
 import errorColors from './errorColors'
 import primaryColors from './primaryColors'
+import sizes from './sizes'
 import { trimmedLowerCase } from '~/components/utils'
 
 export default {
     primaryColors,
     errorColors,
+    sizes,
 
     getTag() {
         if (this.to) {
@@ -38,46 +40,16 @@ export default {
     },
 
     isLink() {
-        return this.hierarchy.toLowerCase() === 'link'
+        return /^link\s(?:gray|color)$/.test(trimmedLowerCase(this.hierarchy))
     },
 
+    // for applying border, focus ring, and shadow.
     isRaised() {
         return (!this.isLink &&
-            !/^tertiary\s(?:gray|color)$|^link\s(?:gray|color)$/i.test(this.hierarchy)
+            !/^tertiary\s(?:gray|color)$|^link\s(?:gray|color)$/.test(
+                trimmedLowerCase(this.hierarchy)
+            )
         )
-    },
-
-    // returns matching sizes when `hierarchy` is link or not;
-    // returns everything relating to sizing of a button, from
-    // spacing to typography, minus font-weight
-    sizes() {
-        const T_SM = 'text-sm'
-        const T_BASE = 'text-base'
-        const T_MD = 'text-md'
-
-        if (this.isLink) {
-            switch (this.size.toLowerCase()) {
-                case 'lg' || 'xl':
-                    return `${T_BASE} h-12`
-                case '2xl':
-                    return `${T_MD} h-14`
-                default:
-                    return `${T_SM} h-10`
-            }
-        } else {
-            switch (this.size.toLowerCase()) {
-                case 'sm':
-                    return `h-18 px-4 py-7 ${T_SM}`
-                case 'lg':
-                    return `h-22 px-x py-9 ${T_BASE}`
-                case 'xl':
-                    return `px-6 py-10 h-24 ${T_BASE}`
-                case '2xl':
-                    return `h-30 px-8 py-14 ${T_MD}`
-                default:
-                    return `h-20 px-5 py-8 ${T_SM}`
-            }
-        }
     },
 
     // returns matching colors depending on button states: hover,
@@ -91,9 +63,11 @@ export default {
     },
 
     getIcon() {
-        return trimmedLowerCase(this.icon)
+        if (this.icon) return trimmedLowerCase(this.icon)
+        return ''
     },
 
+    // returns dynamic background for dots when icon === dot
     dotBackground() {
         const hierarchy = trimmedLowerCase(this.hierarchy)
 
@@ -114,5 +88,35 @@ export default {
         }
 
         return 'bg-success-500'
+    },
+
+    // returns sizes and spacing for icon wrapper, and size for icon component.
+    iconSizeAndSpace() {
+        const isTrailing = this.getIcon === 'trailing'
+
+        if (trimmedLowerCase(this.size) === '2xl') {
+            const size = '20'
+
+            return {
+                wrapper: `h-12 w-12 ${isTrailing ? 'ml-6' : 'mr-6'}`,
+                icon: {
+                    height: size,
+                    width: size,
+                },
+            }
+        }
+        const size = '16.7'
+
+        return {
+            wrapper: `h-10 w-10 ${isTrailing ? 'ml-4' : 'mr-4'}`,
+            icon: {
+                height: size,
+                width: size,
+            },
+        }
+    },
+
+    focusableTag() {
+        return /button|a/.test(this.getTag)
     },
 }
