@@ -109,11 +109,11 @@ module.exports = {
         DEFAULT: '8px',
         full: '9999px',
     },
-    // helper to get spacings in multiples of 2 from 0 to 96;
+    // helper to get spacings in multiples of 2 from 0 to 400;
     spacing: {
         ...Object.fromEntries(
             Array.from({
-                    length: 49,
+                    length: 201,
                 },
                 (_, index) => {
                     return [index, `${index * 2}px`]
