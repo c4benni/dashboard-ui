@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-22 px-7 rounded flex justify-start items-center shadow-xs border border-gray-300 bg-white focus-within:border"
+    class="h-22 px-7 rounded flex justify-start items-center shadow-xs border border-gray-300 bg-white focus-within:border transition-shadow"
     :class="[
       {
         'focus-within:border-primary-300 focus-within:ring-4 focus-within:ring-primary-100':
