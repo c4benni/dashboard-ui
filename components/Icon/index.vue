@@ -1,25 +1,51 @@
 <template>
-  <img decoding="async" loading="lazy" draggable="false" :src="getSrc" :alt="getAlt" :height="height" :width="width" class="select-none"/>
+  <Component :is="toRender" role="img" :aria-label="label" :height="height" :width="width" />
 </template>
 
 <script>
-import { requiredStringProp, undefinedStringProp } from '../utils'
+import {
+  camelCase,
+  capitalize,
+  requiredStringProp,
+  undefinedStringProp,
+} from '../utils'
 
 export default {
   name: 'Icon',
   props: {
     name: requiredStringProp,
-    height: undefinedStringProp,
-    width: undefinedStringProp
+    title: undefinedStringProp,
+    height: {
+      type: String,
+      default: '20'
+    },
+    width: {
+      type: String,
+      default: '20'
+    },
   },
   computed: {
-    getSrc() {
-      return `svg/${this.name}.svg`
+    // format `name` to match valid jsx syntax. Eg edit will be IconEdit
+    // also matching the folder structure.
+    toRender() {
+      return `Icon${capitalize(camelCase(this.name))}`
     },
-    getAlt(){
-      return `${this.name} icon`.replace(/\//g, ' ')
+    label() {
+      if (this.title) {
+        return this.title
+      }
+
+      // format `name` to have a title like 'checkbox blank icon' when `name` is CheckboxBlank or checkboxBlank
+      const formatIconName = () => {
+        const addSpace = camelCase(this.name).replace(/[A-Z]/g, (x) =>
+          ` ${x}`.toLowerCase()
+        )
+
+        return `${capitalize(addSpace)} icon`
+      }
+
+      return formatIconName()
     },
-    
   },
 }
 </script>
