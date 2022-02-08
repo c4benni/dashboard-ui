@@ -1,4 +1,15 @@
-// const colors = require('tailwindcss/colors')
+// utitlity function to get key value pairs of classes;
+function getEntries(length, map) {
+    return Object.fromEntries(
+        Array.from({
+                length,
+            },
+            (_, index) => {
+                return map(index)
+            }
+        )
+    )
+}
 
 module.exports = {
     screens: {
@@ -107,23 +118,21 @@ module.exports = {
         none: '0px',
         sm: '6px',
         DEFAULT: '8px',
+        lg: '12px',
+        xl: '16px',
         full: '9999px',
     },
     // helper to get spacings in multiples of 2 from 0 to 400;
     spacing: {
-        ...Object.fromEntries(
-            Array.from({
-                    length: 201,
-                },
-                (_, index) => {
-                    return [index, `${index * 2}px`]
-                }
-            )
-        ),
+        ...getEntries(201, (index) => [index, `${index * 2}px`]),
+        ...getEntries(201, (index) => [`-${index}`, `-${index * 2}px`]),
     },
     boxShadow: {
         xs: '0px 1px 2px rgba(16, 24, 40, 0.05)',
         sm: '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
         md: '0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06)',
+    },
+    zIndex: {
+        ...getEntries(20, (index) => [index, `${index}`]),
     },
 }
