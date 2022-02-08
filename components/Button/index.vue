@@ -69,14 +69,16 @@ export default {
           ...this.$listeners,
         },
         staticClass:
-          'font-medium flex items-center outline-none justify-center flex-row',
+          'font-medium items-center outline-none justify-center flex-row select-none',
         class: [
           {
-            rounded: !this.isLink,
+            'rounded whitespace-nowrap': !this.isLink,
             'cursor-pointer transition-[opacity,box-shadow] active:opacity-80 can-hover:active:opacity-90':
               !this.disabled,
             'cursor-not-allowed': this.disabled,
             'border focus:ring-4 shadow-xs': this.isRaised,
+            'inline-flex': !this.block || this.isLink,
+            'flex w-full': this.block && !this.isLink,
           },
           this.sizes,
           this.colors,

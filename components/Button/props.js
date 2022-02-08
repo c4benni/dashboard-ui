@@ -7,6 +7,7 @@ export default {
     text: Boolean,
     autofocus: Boolean,
     destructive: Boolean,
+    block: Boolean,
     iconName: undefinedStringProp,
     label: undefinedStringProp,
     title: undefinedStringProp,
