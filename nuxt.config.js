@@ -3,7 +3,7 @@ const description = 'A minimal Dashboard interface by C4Benni'
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'dashboard-ui',
+        title: 'Untitled UI',
         htmlAttrs: {
             lang: 'en',
         },
@@ -74,7 +74,7 @@ export default {
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
-    css: [],
+    css: ['@assets/css/main.css'],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [],
@@ -86,15 +86,22 @@ export default {
     buildModules: [
         // https://go.nuxtjs.dev/eslint
         '@nuxtjs/eslint-module',
-        // https://go.nuxtjs.dev/tailwindcss
-        '@nuxtjs/tailwindcss',
+        '@nuxt/postcss8',
+        'nuxt-vite',
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: ['@nuxtjs/pwa', 'portal-vue/nuxt'],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {},
+    build: {
+        postcss: {
+            plugins: {
+                tailwindcss: {},
+                autoprefixer: {},
+            },
+        },
+    },
 
     pwa: {
         manifest: {
