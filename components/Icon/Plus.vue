@@ -1,0 +1,23 @@
+<template>
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 14 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M6.99999 1.16669V12.8334M1.16666 7.00002H12.8333"
+      stroke="currentColo"
+      stroke-width="1.67"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+</template>
+
+<script>
+export default {
+  name: 'PlusIcon',
+}
+</script>
