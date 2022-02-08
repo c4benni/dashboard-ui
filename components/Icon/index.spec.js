@@ -2,28 +2,37 @@ import { mount } from '@vue/test-utils'
 import Icon from './index.vue'
 import { isVueInstance, setTestId } from '@/test/utils'
 
-describe('Icon', () => {
-    const wrapper = mount(Icon)
+const component = 'Icon'
 
-    const testId = setTestId(wrapper, 'Icon')
-
-    isVueInstance(wrapper)
-
-    test('It renders an img', () => {
-        expect(wrapper.find(`img${testId}`).exists())
+describe(component, () => {
+    const wrapper = mount(Icon, {
+        propsData: {
+            name: 'edit',
+        },
+        stubs: {
+            IconEdit: true,
+            IconPlus: true,
+        },
     })
 
-    describe('It renders an src that starts with svg/ when a name prop is given and a formatted alt attribute that ends with "icon"', () => {
+    isVueInstance(wrapper)
+    const testId = setTestId(wrapper, component)
+
+    test('It renders an svg', () => {
+        expect(wrapper.find(`svg${testId}`).exists())
+    })
+
+    describe('It renders an svg when a name prop is given and a formatted aria-label attribute that ends with "icon"', () => {
         wrapper.props({
-            name: 'edit',
+            name: 'plus',
         })
 
-        test('It renders an src', () => {
-            expect(wrapper.find(`${testId}[src*='svg/']`).exists())
+        test('It renders an svg', () => {
+            expect(wrapper.find(`svg${testId}`).exists())
         })
 
-        test('It renders an alt', () => {
-            expect(wrapper.find(`${testId}[alt='edit icon']`).exists())
+        test('It renders an formatted aria-label', () => {
+            expect(wrapper.find(`${testId}[aria-label='Plus icon']`).exists())
         })
     })
 
