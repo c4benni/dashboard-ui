@@ -88,3 +88,10 @@ export const mediaListener = ({ media, callback }) => {
     }
   }
 }
+
+export function distinctArray(array) {
+  if (Array.isArray(array)) {
+    return [...new Set(array)]
+  }
+  return []
+}
