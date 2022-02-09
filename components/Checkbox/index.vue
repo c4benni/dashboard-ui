@@ -29,14 +29,7 @@
       @input="handleInput"
     />
 
-    <Transition
-      enter-class="rotate-[20deg] opacity-0 will-change-transform"
-      enter-active-class="will-change-transform"
-      enter-to-class="scale-100 opacity-100"
-      leave-active-class="will-change-transform"
-      leave-to-class="scale-75 opacity-0"
-      mode="out-in"
-    >
+    <Transition mode="out-in" v-bind="transitionClasses">
       <Icon
         v-if="getType !== 'blank'"
         :key="getType"
@@ -50,6 +43,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { requiredStringProp, undefinedStringProp } from '../utils'
 export default {
   name: 'Checkbox',
@@ -73,6 +67,7 @@ export default {
     manualChecked: false,
   }),
   computed: {
+    ...mapState(['breakpoint']),
     getType() {
       if (this.indeterminate) {
         return 'indeterminate'
@@ -85,16 +80,28 @@ export default {
       }
       return this.manualChecked
     },
-    iconName(){
-        switch(this.getType){
-            case 'indeterminate':
-                return 'Checkboxindeterminate'
-            case 'checked':
-                return 'CheckboxChecked'
-                default:
-                    return 'CheckboxBlank'
-        }
-    }
+    iconName() {
+      switch (this.getType) {
+        case 'indeterminate':
+          return 'CheckboxIndeterminate'
+        case 'checked':
+          return 'CheckboxChecked'
+        default:
+          return 'CheckboxBlank'
+      }
+    },
+    transitionClasses() {
+      if (this.breakpoint.isMobile) {
+        return {}
+      }
+      return {
+        enterClass: `rotate-[20deg] opacity-0 will-change-transform`,
+        enterActiveClass: 'will-change-transform',
+        entertoClass: 'scale-100 opacity-100',
+        leaveActiveClass: 'will-change-transform',
+        leaveToClass: 'scale-75 opacity-0',
+      }
+    },
   },
   mounted() {
     if (this.autofocus && !this.disabled) {
@@ -103,7 +110,7 @@ export default {
   },
   methods: {
     toggle(value) {
-        this.$refs.input?.focus?.()
+      this.$refs.input?.focus?.()
 
       if (typeof this.modelValue === 'boolean') {
         this.$emit('update:modelValue', value)
