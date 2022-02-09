@@ -1,5 +1,5 @@
 <template>
-  <Component :is="toRender" role="img" :aria-label="label" :height="height" :width="width" />
+  <Component :is="toRender" role="img" :aria-label="label" :height="height || size" :width="width || size" v-bind="$attrs" v-on="$listeners"/>
 </template>
 
 <script>
@@ -17,12 +17,16 @@ export default {
     title: undefinedStringProp,
     height: {
       type: String,
-      default: '20'
+      default: undefined
     },
     width: {
       type: String,
-      default: '20'
+      default: undefined
     },
+    size: {
+      type:String,
+      default:'20'
+    }
   },
   computed: {
     // format `name` to match valid jsx syntax. Eg edit will be IconEdit
