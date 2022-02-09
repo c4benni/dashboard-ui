@@ -14,7 +14,7 @@
         :title="checkboxLabel"
         :model-value="selected"
         class="mr-6"
-        @update:modelValue="$emit('update:selected', selected)"
+        @update:modelValue="toggleSelect"
       />
 
       <Img v-bind="logo" height="40" width="40" class="mr-6" />
@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import {mapState, mapActions} from 'vuex';
+
 import Checkbox from '~/components/Checkbox/index.vue'
 import { requiredProp, trimmedLowerCase } from '~/components/utils'
 import UiText from '~/components/UiText/index.vue'
@@ -66,9 +68,10 @@ export default {
   name: 'TableBodyItem',
   components: { Checkbox, UiText },
   props: {
+    // to easily get an item and update vuex selection;
+    index: requiredProp(Number),
     // apply gray background
     gray: Boolean,
-    selected: Boolean,
     // src: string, alt: string
     logo: {
       type: Object,
@@ -115,6 +118,10 @@ export default {
       'flex items-center py-8 px-12 justify-start h-full flex-shrink-0',
   }),
   computed: {
+    ...mapState(['selectedTableItemIndex']),
+    selected(){
+      return this.selectedTableItemIndex.includes(this.index)
+    },
     checkboxLabel() {
       if (this.selected) {
         return 'Deselect'
@@ -127,5 +134,11 @@ export default {
       return [action('Trash', 'Delete row'), action('Edit', 'Edit row')]
     },
   },
+  methods:{
+    ...mapActions(['toggleTableSelection']),
+    toggleSelect(){
+      this.toggleTableSelection(this.index)
+    }
+  }
 }
 </script>
