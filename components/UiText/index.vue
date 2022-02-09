@@ -23,11 +23,23 @@ export default {
       default: '400',
       validator: (prop) => ['400', '500', '600'].includes(prop.trim()),
     },
+    variant: {
+      type: String,
+      default: undefined,
+      validator: (prop) => {
+        if (typeof prop === 'string') {
+          return ['title', 'body', 'caption', 'disabled'].includes(
+            trimmedLowerCase(prop)
+          )
+        }
+        return true
+      },
+    },
   },
-  render(h) {
+  computed: {
     // get the tailwind class to be applied based on the `size` prop;
     // returns md size if size not given or passed a wrong prop value;
-    const getSize = () => {
+    getSize() {
       switch (trimmedLowerCase(this.size)) {
         case 'xs':
           return 'text-xs'
@@ -42,12 +54,12 @@ export default {
         default:
           return 'text-base'
       }
-    }
+    },
 
     // get the tailwind class to be applied based on the `weight` prop;
     // if `weight` === 400, returns ''. To avoid unecessary className;
     // defaults to 400;
-    const getWeight = () => {
+    getWeight() {
       switch (this.weight.trim()) {
         case '500':
           return 'font-medium'
@@ -56,13 +68,31 @@ export default {
         default:
           return 'font-normal'
       }
-    }
+    },
 
+    // returns different text-color based on variant
+    getVariant() {
+      if(!this.variant) return '';
+      
+      switch (trimmedLowerCase(this.variant)) {
+        case 'title':
+          return 'text-gray-900'
+        case 'caption':
+          return 'text-gray-500'
+        case 'disabled':
+          return 'text-gray-300'
+        default:
+          return 'text-gray-700'
+      }
+    },
+  },
+  render(h) {
     return h(
       this.tag,
       {
-        ...this.$attrs,
-        class: [getSize(), getWeight()],
+        attrs: { ...this.$attrs },
+        on: { ...this.$listeners },
+        class: [this.getSize, this.getWeight, this.getVariant],
       },
       [this.label || this.$slots.default]
     )
