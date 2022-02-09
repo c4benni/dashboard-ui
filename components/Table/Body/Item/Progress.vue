@@ -4,6 +4,7 @@
         :aria-valuenow="value"
         :aria-valuemax="max"
         :aria-valuemin="min"
+        :title=" `${percentage}%`"
         class="h-4 w-44 rounded-[4px] bg-primary-50 relative Progress"
         :style="{
             '--percent': `${percentage}%`

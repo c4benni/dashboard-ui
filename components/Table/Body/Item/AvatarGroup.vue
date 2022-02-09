@@ -17,7 +17,7 @@
             'z-4': i === 4,
           },
         ]"
-        style="object-fit: none;"
+        style="object-fit: none"
       />
 
       <div
@@ -40,6 +40,14 @@ export default {
     images: {
       type: Array,
       required: true,
+      validator: (prop) =>
+        prop.every((item) => {
+          const isObject = typeof item === 'object'
+          const hasSrc = typeof item?.src === 'string'
+          const hasAlt = typeof item?.alt === 'string'
+
+          return isObject && hasSrc && hasAlt
+        }),
     },
     max: {
       type: Number,
@@ -47,7 +55,8 @@ export default {
     },
   },
   data: () => ({
-    sharedClasses: 'w-12 h-12 border-2 border-white rounded-full relative select-none',
+    sharedClasses:
+      'w-12 h-12 border-2 border-white rounded-full relative select-none',
   }),
   computed: {
     top5() {
