@@ -1,5 +1,12 @@
 import { trimmedLowerCase, undefinedProp, undefinedStringProp } from '../utils'
 
+const errorPrefix = 'Button [prop] -'
+
+const arrayError = (prop, validValues) =>
+    console.error(
+        `${errorPrefix} ${prop}: Expected one of ${validValues}. Got ${prop}`
+    )
+
 export default {
     to: undefinedProp([String, Object]),
     href: undefinedStringProp,
@@ -14,12 +21,17 @@ export default {
     icon: {
         type: String,
         default: undefined,
-        validator: (prop) =>
-            typeof prop === 'string' ?
-            ['leading', 'trailing', 'dot', 'only'].includes(
-                trimmedLowerCase(prop)
-            ) :
-            true,
+        validator: (prop) => {
+            const validValues = ['leading', 'trailing', 'dot', 'only']
+
+            if (typeof prop === 'string') {
+                if (validValues.includes(trimmedLowerCase(prop))) {
+                    return true
+                }
+
+                arrayError(prop, validValues)
+            } else return true
+        },
     },
     tag: {
         type: String,
@@ -28,19 +40,35 @@ export default {
     size: {
         type: String,
         default: 'md',
-        validator: (prop) => ['sm', 'md', 'lg', 'xl', '2xl'].includes(trimmedLowerCase(prop)),
+        validator: (prop) => {
+            const validValues = ['sm', 'md', 'lg', 'xl', '2xl', 'custom']
+
+            if (validValues.includes(trimmedLowerCase(prop))) {
+                return true
+            }
+
+            arrayError(prop, validValues)
+        },
     },
     hierarchy: {
         type: String,
         default: 'primary',
-        validator: (prop) => [
-            'primary',
-            'secondary color',
-            'secondary gray',
-            'tertiary color',
-            'tertiary gray',
-            'link color',
-            'link gray',
-        ].includes(trimmedLowerCase(prop)),
+        validator: (prop) => {
+            const validValues = [
+                'primary',
+                'secondary color',
+                'secondary gray',
+                'tertiary color',
+                'tertiary gray',
+                'link color',
+                'link gray',
+            ]
+
+            if (validValues.includes(trimmedLowerCase(prop))) {
+                return true
+            }
+
+            arrayError(prop, validValues)
+        },
     },
 }
