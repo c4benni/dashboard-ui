@@ -3,7 +3,7 @@
     <div
       class="bg-white border border-gray-200 shadow-md overflow-hidden md:rounded w-fit max-w-[100vw] overflow-x-auto"
     >
-      <table class="border-collapse">
+      <table>
         <TableHead />
 
         <TableBody />
@@ -21,13 +21,6 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'Table',
-
-  props: {
-    max: {
-      type: Number,
-      default: 10,
-    },
-  },
 
   computed: {
     ...mapState(['breakpoint']),
