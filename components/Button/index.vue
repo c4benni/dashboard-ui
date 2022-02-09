@@ -72,7 +72,7 @@ export default {
           'font-medium items-center outline-none justify-center flex-row select-none',
         class: [
           {
-            'rounded whitespace-nowrap': !this.isLink,
+            [`${this.getSize === 'custom' ? '' : 'rounded'} whitespace-nowrap`]: !this.isLink,
             'cursor-pointer transition-[opacity,box-shadow] active:opacity-80 can-hover:active:opacity-90':
               !this.disabled,
             'cursor-not-allowed': this.disabled,
