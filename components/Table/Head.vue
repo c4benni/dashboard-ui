@@ -7,7 +7,9 @@
         role="columnheader"
         scope="col"
         :aria-sort="sortBy === th.title ? thAriaSort : 'none'"
-        :aria-label="`${th.title}. Click to ${sortBy===th.title ? thAriaLabelSuffix : 'sort ascending'}`"
+        :aria-label="`${th.title}. Click to ${
+          sortBy === th.title ? thAriaLabelSuffix : 'sort ascending'
+        }`"
         class="inline-flex items-center px-12 py-6 flex-shrink-0"
         :class="th.width"
       >
@@ -15,7 +17,7 @@
           <Checkbox
             v-if="i === 0"
             :model-value="checkboxChecked"
-            :indeterminate="checkboxindeterminate"
+            :indeterminate="!!checkboxindeterminate"
             :label="checkboxTitle"
             :title="checkboxTitle"
             @update:modelValue="handleSelect"
@@ -33,27 +35,29 @@
               variant="caption"
             />
 
-            <Transition v-bind="arrowTransition">
-              <Icon
-                v-if="sortBy === th.title && sortStep"
-                :key="sortStep"
-                name="SortArrow"
-                size="16"
-                class="mx-2 text-gray-500 transform-gpu"
-                :class="[
-                  {
-                    'rotate-180': sortStep === 2,
-                  },
-                ]"
-              />
+            <ClientOnly>
+              <Transition v-bind="arrowTransition">
+                <Icon
+                  v-if="sortBy === th.title && sortStep"
+                  :key="sortStep"
+                  name="SortArrow"
+                  size="16"
+                  class="mx-2 text-gray-500 transform-gpu"
+                  :class="[
+                    {
+                      'rotate-180': sortStep === 2,
+                    },
+                  ]"
+                />
 
-              <Icon
-                v-else
-                name="SortArrow"
-                size="12"
-                class="mx-2 text-gray-500 transition-[opacity,transform] transform-gpu opacity-[0] can-hover:group-hover:opacity-50"
-              />
-            </Transition>
+                <Icon
+                  v-else-if="!breakpoint.isMobile"
+                  name="SortArrow"
+                  size="12"
+                  class="mx-2 text-gray-500 transition-[opacity,transform] transform-gpu opacity-[0] can-hover:group-hover:opacity-50"
+                />
+              </Transition>
+            </ClientOnly>
           </div>
         </template>
 
@@ -67,24 +71,33 @@
   </thead>
 </template>
 
-<script>import { thead } from "./utils"
+<script>
+import { mapState, mapActions } from 'vuex'
+
+import { thead } from './utils'
 
 export default {
   name: 'Tablehead',
 
   data: () => ({
-    sortBy: 'Company',
-    // 1 = asc, 2 = desc, 0 = null;
-    sortStep: 1,
-    tableHead: thead
+    tableHead: thead,
   }),
 
   computed: {
+    ...mapState(['selectedTableItemIndex', 'breakpoint']),
+    ...mapState({
+      // 1 = asc, 2 = desc, 0 = null;
+      sortStep: 'tableSortStep',
+      sortBy: 'sortTableBy'
+    }),
     checkboxChecked() {
-      return false
+      return this.selectedTableItemIndex.length === 2
     },
     checkboxindeterminate() {
-      return false
+      return (
+        this.selectedTableItemIndex.length &&
+        this.selectedTableItemIndex.length !== 2
+      )
     },
     checkboxTitle() {
       return ''
@@ -137,24 +150,35 @@ export default {
     },
   },
 
+  mounted() {
+    this.tableSortStep(1)
+    this.sortTableBy('Company')
+  },
+
   methods: {
+    ...mapActions([
+      'clearTableSelection',
+      'selectMultipleTableItems',
+      'tableSortStep',
+      'sortTableBy'
+    ]),
     changeSort(th) {
       if (this.sortBy === th.title) {
         if (this.sortStep === 2) {
-          this.sortStep = 0
-        } else this.sortStep++
+          this.tableSortStep(0)
+        } else this.tableSortStep(this.sortStep + 1)
       } else {
-        this.sortBy = th.title
+        this.sortTableBy(th.title)
 
-        this.sortStep = 1
+        this.tableSortStep(1)
       }
     },
 
     handleSelect(evt) {
       if (evt === true) {
-        this.selectAll()
+        this.selectMultipleTableItems([0, 1])
       } else {
-        this.selected = []
+        this.clearTableSelection()
       }
     },
   },
