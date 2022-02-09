@@ -2,12 +2,18 @@
 // returns everything relating to sizing of a button, from
 // spacing to typography, minus font-weight
 export default function sizes() {
+    const size = this.getSize
+
+    if (size === 'custom') {
+        return ''
+    }
+
     const T_SM = 'text-sm'
     const T_BASE = 'text-base'
     const T_MD = 'text-md'
 
     if (this.isLink) {
-        switch (this.size.toLowerCase()) {
+        switch (size) {
             case 'lg' || 'xl':
                 return `${T_BASE} h-12`
             case '2xl':
@@ -18,7 +24,7 @@ export default function sizes() {
     } else {
         const iconOnly = this.getIcon === 'only'
 
-        switch (this.size.toLowerCase()) {
+        switch (size) {
             case 'sm':
                 return iconOnly ? 'h-18 w-18 p-4' : `h-18 py-4 px-7 ${T_SM}`
             case 'lg':
