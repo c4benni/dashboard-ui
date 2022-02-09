@@ -3,6 +3,7 @@
     <TableBodyItem
       v-for="(item, i) in content"
       :key="item.company.name + i"
+      :index="i"
       v-bind="item"
       :gray="(i + 1) % 2 !== 0"
     />
@@ -13,7 +14,7 @@
 const content = [
   {
     logo: {
-      src: 'img/logo/Avatar.png',
+      src: '/img/logo/Avatar.png',
       alt: '',
     },
     company: {
@@ -26,7 +27,7 @@ const content = [
       label: 'Customer',
     },
     avatarGroup: Array.from({ length: 9 }, (_, i) => ({
-      src: `img/Avatar (${i + 1}).png`,
+      src: `/img/Avatar (${i + 1}).png`,
       alt: 'avi',
     })),
     about: {
