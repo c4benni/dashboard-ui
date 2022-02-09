@@ -7,7 +7,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M11.6666 3.5L5.24998 9.91667L2.33331 7"
+      d="M2.91669 7H11.0834"
       stroke="currentColor"
       stroke-width="2"
       stroke-linecap="round"
@@ -17,8 +17,8 @@
 </template>
 
 <script>
-// custom fill
+// has custom fill
 export default {
-  name: 'CheckboxCheckedIcon',
+  name: 'CheckboxindeterminateIcon',
 }
 </script>
