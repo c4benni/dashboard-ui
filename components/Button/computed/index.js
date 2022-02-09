@@ -8,6 +8,10 @@ export default {
     errorColors,
     sizes,
 
+    getSize() {
+        return trimmedLowerCase(this.size)
+    },
+
     getTag() {
         if (this.to) {
             return 'NuxtLink'
