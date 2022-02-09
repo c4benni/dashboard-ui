@@ -57,7 +57,6 @@ export default {
     },
 
     // get the tailwind class to be applied based on the `weight` prop;
-    // if `weight` === 400, returns ''. To avoid unecessary className;
     // defaults to 400;
     getWeight() {
       switch (this.weight.trim()) {
