@@ -8,7 +8,16 @@ export default {
     TABLE_SORT_STEP(s, p) {
         s.tableSortStep = p
     },
-    SORT_TABLE_BY(s, p) {
-        s.sortTableBy = p
+
+    USER(s, p) {
+        s.user = p
+    },
+
+    TABLE_DATA(s, p) {
+        s.tableData = p
+    },
+
+    APP_MOUNTED(s, p) {
+        s.appMounted = p
     },
 }

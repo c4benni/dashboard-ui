@@ -1,6 +1,13 @@
 import { distinctArray } from '~/components/utils'
+import { getTable, getUser } from '~/services'
 
 const selectTableMutation = 'SELECTED_TABLE_ITEM_INDEX'
+
+const fetchAndCommit = async(service, commit, mutation) => {
+    const data = await service()
+
+    commit(mutation, data)
+}
 
 export default {
     updateBreakpoint({ commit, state }, payload) {
@@ -61,7 +68,17 @@ export default {
             throw new TypeError(`Expected Number, got ${typeof payload}`)
         }
     },
-    sortTableBy({ commit }, payload) {
-        commit('SORT_TABLE_BY', payload)
+    async getUser({ commit, state }) {
+        if (!state.user) {
+            await fetchAndCommit(getUser, commit, 'USER')
+        }
+    },
+
+    async getTableData({ commit }) {
+        await fetchAndCommit(getTable, commit, 'TABLE_DATA')
+    },
+
+    setAppMounted({ commit }, payload) {
+        commit('APP_MOUNTED', payload)
     },
 }
