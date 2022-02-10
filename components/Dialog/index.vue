@@ -1,6 +1,9 @@
 <template>
   <MountingPortal v-if="renderRoot" mount-to="body" append>
     <div
+      role="dialog"
+      aria-modal="true"
+      v-bind="$attrs"
       class="absolute top-0 left-0 w-full h-full isolate grid justify-center items-center z-10"
       :class="{ 'pointer-events-none': !isActive }"
     >
@@ -34,8 +37,11 @@
 <script>
 import { mapState } from 'vuex'
 import eventKey from '../utils/eventKey'
-import { nextAnimFrame   } from '../utils'
-import props, { defaultBackdropTransition, defaultTransitionClasses } from './props'
+import { nextAnimFrame } from '../utils'
+import props, {
+  defaultBackdropTransition,
+  defaultTransitionClasses,
+} from './props'
 import ControlledFocus, { hackTabKey } from '@/components/utils/ControlledFocus'
 
 export default {
@@ -61,17 +67,17 @@ export default {
   computed: {
     ...mapState(['breakpoint']),
 
-    getTransition(){
+    getTransition() {
       return {
         ...defaultTransitionClasses,
-        ...this.transition
+        ...this.transition,
       }
     },
 
-    getBackdropTransition(){
+    getBackdropTransition() {
       return {
         ...defaultBackdropTransition,
-        ...this.backdropTransition
+        ...this.backdropTransition,
       }
     },
 
@@ -147,7 +153,7 @@ export default {
       this.manualActive = value
     },
 
-    open(){
+    open() {
       this.toggle(true)
     },
 
