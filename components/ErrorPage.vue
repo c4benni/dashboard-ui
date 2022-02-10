@@ -7,7 +7,7 @@
       class="text-error-800 mt-8"
     />
 
-    <Button to="/dashboard/overview" label="Go to Overview" class="mt-33" />
+    <Button to="/dashboard/overview" icon="leading" icon-name="PaginationArrow" label="Go to Overview" class="mt-33" />
   </main>
 </template>
 
