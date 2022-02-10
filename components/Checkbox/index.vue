@@ -2,6 +2,7 @@
   <div
     role="checkbox"
     :aria-checked="getChecked"
+    :aria-label="label"
     :title="title"
     class="h-10 w-10 rounded-sm border flex items-center justify-center mr-6 transition-[shadow,opacity]"
     :class="[
@@ -16,8 +17,11 @@
     v-on="$listeners"
     @click="toggle(!getChecked)"
   >
+    <label :for="$attrs.id || manualId" class="sr-only">
+      {{ label }}
+    </label>
     <input
-      :id="$attrs.id"
+      :id="$attrs.id || manualId"
       ref="input"
       type="checkbox"
       :indeterminate="getType === 'indeterminate'"
@@ -65,6 +69,7 @@ export default {
   },
   data: () => ({
     manualChecked: false,
+    manualId: null,
   }),
   computed: {
     ...mapState(['breakpoint']),
@@ -102,6 +107,9 @@ export default {
         leaveToClass: 'scale-75 opacity-0',
       }
     },
+  },
+  created() {
+    this.manualId = `checkbox-${performance.now()}`
   },
   mounted() {
     if (this.autofocus && !this.disabled) {
