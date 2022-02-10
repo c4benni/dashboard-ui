@@ -15,7 +15,9 @@ export default {
     autofocus: Boolean,
     destructive: Boolean,
     block: Boolean,
+    pill: Boolean,
     iconName: undefinedStringProp,
+    iconSize: undefinedProp(Object),
     label: undefinedStringProp,
     title: undefinedStringProp,
     icon: {
