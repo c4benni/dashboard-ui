@@ -6,13 +6,10 @@
       <Nuxt />
     </KeepAlive>
 
-    <div
-      v-if="!appMounted"
-      class="flex justify-center items-center fixed inset-0 z-10 bg-white"
-    >
-      <Icon name="spinner" size="56" class="animate-spin text-gray-500" />
+    <div v-if="!appMounted" class="app-loading">
+      <Icon name="spinner" size="56" class="spinner" />
 
-      <p class="sr-only">Loading metrics...</p>
+      <p class="label">Loading metrics...</p>
     </div>
   </div>
 </template>
@@ -23,6 +20,9 @@ import { initBreakpoint } from '~/components/utils'
 
 export default {
   name: 'DefaultLayout',
+  data: () => ({
+    modal: false,
+  }),
 
   async fetch() {
     await this.getUser()
@@ -30,7 +30,7 @@ export default {
   head() {
     return {
       htmlAttrs: {
-        'data-app-loading': this.appMounted ? undefined : '',
+        'data-lock-body-scroll': this.appMounted ? undefined : '',
       },
     }
   },
