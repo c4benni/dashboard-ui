@@ -1,5 +1,11 @@
 <template>
-  <img :src="publicId" :alt="alt" :width="width" :height="height" class="text-[transparent] text-[1px]"/>
+  <img
+    :src="publicId"
+    :alt="alt"
+    :width="width || size"
+    :height="height || size"
+    class="text-[transparent] text-[1px]"
+  />
 </template>
 
 <script>
@@ -16,6 +22,7 @@ export default {
     src: requiredStringProp,
     width: undefinedStringProp,
     height: undefinedStringProp,
+    size: undefinedStringProp,
     quality: undefinedStringProp,
     loading: undefinedStringProp,
   },
