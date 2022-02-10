@@ -53,13 +53,16 @@
         :icon-name="action.icon"
         :title="action.title"
         hierarchy="tertiary gray"
+        v-on="action.events"
       />
+
+        <TableBodyItemDeleteDialog v-model="dialog" />
     </td>
   </tr>
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex';
+import { mapState, mapActions } from 'vuex'
 
 import Checkbox from '~/components/Checkbox/index.vue'
 import { requiredProp, trimmedLowerCase } from '~/components/utils'
@@ -116,10 +119,11 @@ export default {
   data: () => ({
     sharedClasses:
       'flex items-center py-8 px-12 justify-start h-full flex-shrink-0',
+    dialog: false,
   }),
   computed: {
     ...mapState(['selectedTableItemIndex']),
-    selected(){
+    selected() {
       return this.selectedTableItemIndex.includes(this.index)
     },
     checkboxLabel() {
@@ -129,16 +133,23 @@ export default {
       return 'Select'
     },
     actions() {
-      const action = (icon, title) => ({ icon, title })
+      const action = (icon, title, events) => ({ icon, title, events })
 
-      return [action('Trash', 'Delete row'), action('Edit', 'Edit row')]
+      return [
+        action('Trash', 'Delete row', {
+          click: () => {
+            this.dialog = true
+          },
+        }),
+        action('Edit', 'Edit row'),
+      ]
     },
   },
-  methods:{
+  methods: {
     ...mapActions(['toggleTableSelection']),
-    toggleSelect(){
+    toggleSelect() {
       this.toggleTableSelection(this.index)
-    }
-  }
+    },
+  },
 }
 </script>
