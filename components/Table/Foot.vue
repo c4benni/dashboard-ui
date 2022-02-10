@@ -1,23 +1,27 @@
 <template>
   <ClientOnly>
-    <tfoot v-if="!breakpoint.isMobile" class="h-33 flex items-center">
-      <tr class="flex justify-between w-full pt-[11px] px-12 pb-8">
-        <td class="grid grid-flow-col gap-x-6">
-          <Button
-            v-for="action in actions"
-            :key="action.title"
-            hierarchy="secondary gray"
-            :label="action.title"
-            size="custom"
-            class="h-19 py-[9px] px-[17px] rounded-sm text-sm"
-          />
-        </td>
+    <div
+      v-if="!breakpoint.isMobile"
+      class="h-33 flex items-center justify-between w-full pt-[11px] px-12 pb-8"
+    >
+      <div class="grid grid-flow-col gap-x-6">
+        <Button
+          v-for="action in actions"
+          :key="action.title"
+          hierarchy="secondary gray"
+          :label="action.title"
+          size="custom"
+          class="h-19 py-[9px] px-[17px] rounded-sm text-sm"
+        />
+      </div>
 
-        <td class="flex items-center">
-          <UiText label="Page 1 of 10" variant="body" size="sm" />
-        </td>
-      </tr>
-    </tfoot>
+      <UiText
+        label="Page 1 of 10"
+        variant="body"
+        size="sm"
+        class="flex items-center"
+      />
+    </div>
 
     <div v-else class="mt-12 mx-8">
       <Divider />
