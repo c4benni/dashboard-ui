@@ -13,6 +13,10 @@ const name = 'Button'
 
 export default {
   name,
+  model: {
+    event: 'update:modelValue',
+    prop: 'modelValue',
+  },
   props,
   computed,
   created() {
@@ -67,6 +71,15 @@ export default {
         },
         on: {
           ...this.$listeners,
+          click: (e) => {
+            if (!this.disabled) {
+              this.$emit('click', e)
+            }
+
+            if (typeof this.modelValue === 'boolean') {
+              this.$emit('update:modelValue',!this.modelValue)
+            }
+          },
         },
         staticClass:
           'font-medium items-center outline-none justify-center flex-row select-none',

@@ -16,6 +16,7 @@ export default {
     destructive: Boolean,
     block: Boolean,
     pill: Boolean,
+    modelValue: Boolean,
     iconName: undefinedStringProp,
     iconSize: undefinedProp(Object),
     label: undefinedStringProp,
