@@ -9,7 +9,7 @@
         :key="link.title"
         :to="link.to"
         :label="link.title"
-        :current="`/dashboard/${link.to}` === $route.path"
+        :current="`${link.to}` === $route.path"
       />
     </Nav>
 
@@ -27,7 +27,7 @@ export default {
   }),
   computed: {
     links() {
-      const link = (title) => ({ title, to: `${title.toLowerCase().replace(/\s+/g,'-')}` })
+      const link = (title) => ({ title, to: `/dashboard/${title.toLowerCase().replace(/\s+/g,'-')}` })
 
       return [
         link('Overview'),
