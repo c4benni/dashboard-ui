@@ -96,9 +96,9 @@ export default {
       }
       return {
         enterClass: `rotate-[20deg] opacity-0 will-change-transform`,
-        enterActiveClass: 'will-change-transform',
+        enterActiveClass: 'will-change-transform duration-[150ms]',
         entertoClass: 'scale-100 opacity-100',
-        leaveActiveClass: 'will-change-transform',
+        leaveActiveClass: 'will-change-transform duration-[75ms]',
         leaveToClass: 'scale-75 opacity-0',
       }
     },
