@@ -1,6 +1,7 @@
 <template>
   <Dialog
     :model-value="modelValue"
+    aria-labelledby="dialog-title"
     @update:modelValue="toggle"
   >
     <div
@@ -85,11 +86,11 @@ export default {
         label,
         className,
         destructive,
-        autofocus
+        autofocus,
       })
 
       return [
-        action(undefined, 'Deactivate', undefined, true),
+        action(undefined, 'Delete', undefined, true),
         action('secondary gray', 'Cancel', 'sm:mt-0 mt-6', true, true),
       ]
     },
