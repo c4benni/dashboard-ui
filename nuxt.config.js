@@ -74,7 +74,7 @@ export default {
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
-    css: ['@assets/css/main.css'],
+    css: ['@assets/css/main.css', '@assets/css/fadeAppear.css'],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [],
@@ -105,7 +105,33 @@ export default {
 
     pwa: {
         manifest: {
+            useWebmanifestExtension: true,
+            name: 'Untitled UI by C4Benn',
+            short_name: 'Untitled-UI',
+            start_url: '/?mode=pwa',
+            display: 'standalone',
+            background_color: '#fff',
+            theme_color: '#7F56D9',
+            description,
             lang: 'en',
+            dir: 'ltr',
+            orientation: 'portrait',
+            categories: [
+                'lifestyle',
+                'finance',
+                'banking',
+                'productivity & finance',
+                'productivity',
+            ],
+        },
+        meta: {
+            mobileAppIOS: true,
+            author: 'Chidi Benedict',
+            themeColor: '#7F56D9',
+            nativeUI: true,
+        },
+        workbox: {
+            enabled: true,
         },
     },
 
