@@ -1,5 +1,7 @@
 <template>
-  <header class="h-32 md:h-36 w-full py-12 md:py-0 pr-4 md:pr-16 pl-8 md:pl-16 max-w-7xl flex items-center">
+  <header
+    class="h-32 md:h-36 w-full py-12 md:py-0 pr-4 md:pr-16 pl-8 md:pl-16 max-w-7xl flex items-center"
+  >
     <NuxtLink to="/" class="flex mr-8">
       <Img
         src="logo"
@@ -54,7 +56,48 @@
             'mr-8': i === 1,
           },
         ]"
+        @click="icon.onClick"
       />
+
+      <Dialog
+        v-model="dialog"
+        aria-labelledby="dialog-title"
+        :transition="{
+          enterClass: 'translate-x-[100%] will-change-transform',
+          enterActiveClass:
+            'duration-[400ms] transform-gpu transition-transform',
+          leaveToClass: 'translate-x-[100%] will-change-transform',
+        }"
+      >
+        <div
+          class="h-screen w-screen flex justify-end"
+          @click.self="toggleDialog(false)"
+        >
+          <div class="bg-white h-full w-200 shadow-xl">
+            <header
+              id="dialog-title"
+              class="flex justify-between items-center py-6 px-12"
+            >
+              <UiText
+                :label="dialogTitle"
+                size="lg"
+                variant="title"
+                weight="500"
+              />
+
+              <Button
+                title="Close dialog"
+                icon="only"
+                icon-name="x"
+                hierarchy="tertiary gray"
+                @click="toggleDialog(false)"
+              />
+            </header>
+
+            <Divider />
+          </div>
+        </div>
+      </Dialog>
 
       <button
         title="Profile"
@@ -72,14 +115,14 @@
     </template>
 
     <template v-else>
-      <Spacer/>
+      <Spacer />
 
       <Button
-      icon="only"
-      icon-name="menu"
-      title="Open navigation"
-      hierarchy="tertiary gray"
-    />
+        icon="only"
+        icon-name="menu"
+        title="Open navigation"
+        hierarchy="tertiary gray"
+      />
     </template>
   </header>
 </template>
@@ -89,6 +132,10 @@ import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Header',
+  data: () => ({
+    dialog: false,
+    dialogTitle: '',
+  }),
   async fetch() {
     await this.getUser()
   },
@@ -118,13 +165,23 @@ export default {
       ]
     },
     icons() {
-      const icon = (icon, title) => ({ icon, title })
+      const icon = (icon, title) => ({
+        icon,
+        title,
+        onClick: () => {
+          this.dialogTitle = title
+          this.toggleDialog(true)
+        },
+      })
 
       return [icon('setting', 'Setting'), icon('bell', 'Notifications')]
     },
   },
   methods: {
     ...mapActions(['getUser']),
+    toggleDialog(val) {
+      this.dialog = val
+    },
   },
 }
 </script>
