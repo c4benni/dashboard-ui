@@ -95,8 +95,7 @@ export default {
       )
     },
     checkboxTitle() {
-      return ''
-      // return !this.selected.length ? 'Select all' : 'Clear selection'
+      return !this.selectedTableItemIndex.length ? 'Select all' : 'Clear selection'
     },
     // fade out on leave, slide from down or up depending on sortBy state
     arrowTransition() {
