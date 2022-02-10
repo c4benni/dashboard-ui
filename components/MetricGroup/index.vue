@@ -1,4 +1,4 @@
-<template functional>
+<template>
   <ul
     class="grid md:grid-flow-col gap-10 md:gap-12"
   >
