@@ -110,7 +110,7 @@ export default {
 
       return [
         link('Home', '/'),
-        link('Dashboard'),
+        link('Dashboard', '/dashboard/overview'),
         link('Projects'),
         link('Tasks'),
         link('Reporting'),
