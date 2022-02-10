@@ -23,7 +23,7 @@ body {
   @apply max-h-screen overflow-y-auto pb-42 md:pb-0 overflow-x-hidden;
 }
 
-:root[data-lock-body-scroll] body {
+html[data-lock-body-scroll] body {
   padding-right: var(--width-difference);
   @apply overflow-y-hidden;
 }
@@ -31,23 +31,6 @@ body {
 /* add mx-auto to all classes with max-w-7xl */
 .max-w-7xl {
   margin: 0 auto;
-}
-
-@keyframes fadeAppear {
-  from {
-    opacity: var(--appear-from, 0);
-  }
-  to: {
-    opacity: var(--appear-to, 1);
-  }
-}
-
-.fade-appear {
-  animation-name: fadeAppear;
-  animation-delay: var(--appear-delay, 0ms);
-  animation-duration: var(--appear-duration, 150ms);
-  animation-iteration-count: var(--appear-flash, 1);
-  animation-timing-function: var(--appear-ease, cubic-bezier(0.4, 0, 0.2, 1));
 }
 
 ::-webkit-scrollbar-corner,
