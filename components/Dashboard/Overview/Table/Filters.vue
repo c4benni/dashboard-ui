@@ -4,6 +4,7 @@
       <Button
         v-for="filter in appliedFilters"
         :key="filter"
+        role="listitem"
         :label="filter"
         class="mr-6"
         :class="[
