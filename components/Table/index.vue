@@ -1,18 +1,16 @@
 <template>
-  <div class="w-screen">
+  <div class="bg-white md:border border-gray-200 md:shadow-md overflow-hidden md:rounded max-w-screen md:max-w-7xl">
     <div
-      class="bg-white border border-gray-200 shadow-md overflow-hidden md:rounded w-fit max-w-[100vw] overflow-x-auto"
+      class="w-fit max-w-full overflow-x-auto bg-white border md:border-0 shadow-md md:shadow-none"
     >
-      <table>
+      <table class="w-full">
         <TableHead />
 
         <TableBody />
-
-        <TableFoot v-if="!breakpoint.isMobile" />
       </table>
     </div>
 
-    <TableFoot v-if="breakpoint.isMobile" />
+    <TableFoot/>
   </div>
 </template>
 
