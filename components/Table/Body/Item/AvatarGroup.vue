@@ -6,6 +6,7 @@
         :key="i"
         v-bind="img"
         draggable="false"
+        size="24"
         class="bg-white"
         :class="[
           sharedClasses,
