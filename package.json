@@ -13,6 +13,7 @@
     },
     "dependencies": {
         "@nuxtjs/pwa": "^3.3.5",
+        "cloudinary-core": "^2.12.3",
         "core-js": "^3.15.1",
         "nuxt": "^2.15.7",
         "portal-vue": "^2.1.7"
@@ -33,7 +34,7 @@
         "eslint-plugin-nuxt": "^2.0.0",
         "eslint-plugin-vue": "^7.12.1",
         "jest": "^27.5.1",
-        "nuxt-vite": "^0.3.5",
+        "nuxt-vite": "0.2",
         "postcss": "^8.4.6",
         "prettier": "^2.3.2",
         "sinon": "^13.0.1",

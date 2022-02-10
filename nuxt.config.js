@@ -3,7 +3,7 @@ const description = 'A minimal Dashboard interface by C4Benni'
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'Untitled UI',
+        titleTemplate: '%s - Untitled UI',
         htmlAttrs: {
             lang: 'en',
         },
@@ -53,7 +53,7 @@ export default {
                 hid: 'favicon',
                 rel: 'icon',
                 type: 'image/x-icon',
-                href: '/favicon.png',
+                href: 'https://res.cloudinary.com/c4benn/image/upload/v1644484839/untitledUi/favicon.png',
             },
             {
                 hid: 'google-api-preconnect',
