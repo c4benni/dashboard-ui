@@ -1,5 +1,7 @@
 import Breakpoint from './breakpoint'
 
+export const isHTML = any => any instanceof HTMLElement
+
 export const breakpointConfig = {
     xxs: '0',
     xs: '349px',
@@ -9,6 +11,7 @@ export const breakpointConfig = {
     xl: '1919px',
 }
 
+// for initializing breakpoint from any layout. Will only be called once
 export function initBreakpoint() {
     if (this.$store.state.breakpoint.inactive) {
         const dispatch = (payload) =>
