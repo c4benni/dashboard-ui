@@ -93,6 +93,10 @@ export default {
 
     // returns sizes and spacing for icon wrapper, and size for icon component.
     iconSizeAndSpace() {
+        if (this.iconSize) {
+            return this.iconSize
+        }
+
         const isTrailing = this.getIcon === 'trailing'
 
         if (trimmedLowerCase(this.size) === '2xl') {
