@@ -4,6 +4,10 @@
     :alt="alt"
     :width="width || size"
     :height="height || size"
+    decoding="async"
+    crossorigin="anonymous"
+    :data-src-cache="publicId"
+    loading="lazy"
     class="text-[transparent] text-[1px]"
   />
 </template>
