@@ -16,7 +16,7 @@ export default {
       type: String,
       default: 'md',
       validator: (prop) =>
-        ['xs', 'sm', 'md', 'lg', 'xl', '2xl'].includes(trimmedLowerCase(prop)),
+        ['xs', 'sm', 'md', 'lg', 'xl', '2xl', 'custom'].includes(trimmedLowerCase(prop)),
     },
     weight: {
       type: String,
@@ -41,6 +41,8 @@ export default {
     // returns md size if size not given or passed a wrong prop value;
     getSize() {
       switch (trimmedLowerCase(this.size)) {
+        case 'custom':
+          return ''
         case 'xs':
           return 'text-xs'
         case 'sm':
