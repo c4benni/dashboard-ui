@@ -13,7 +13,7 @@
         :label="checkboxLabel"
         :title="checkboxLabel"
         :model-value="selected"
-        class="mr-6"
+        class="mr-6 shrink-0"
         @update:modelValue="toggleSelect"
       />
 
@@ -26,7 +26,7 @@
       </div>
     </td>
 
-    <td :class="[sharedClasses]" class="w-71">
+    <td :class="[sharedClasses]" class="w-68">
       <TableBodyItemProgress :value="licenseUse" />
     </td>
 
@@ -45,7 +45,7 @@
       <UiText :label="about.subtitle" size="sm" variant="caption" />
     </td>
 
-    <td :class="[sharedClasses]">
+    <td class="flex items-center p-8 justify-start h-full flex-shrink-0 w-58">
       <Button
         v-for="action in actions"
         :key="action.icon"
