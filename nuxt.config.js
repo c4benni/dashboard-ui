@@ -108,7 +108,7 @@ export default {
             useWebmanifestExtension: true,
             name: 'Untitled UI by C4Benn',
             short_name: 'Untitled-UI',
-            start_url: '/dashboard-ui/?mode=pwa',
+            start_url: '/dashboard-ui/dashboard/overview?mode=pwa',
             display: 'standalone',
             background_color: '#fff',
             theme_color: '#7F56D9',
