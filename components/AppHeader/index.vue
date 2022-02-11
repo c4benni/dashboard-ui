@@ -149,9 +149,7 @@ export default {
         return {
           title,
           to: to || getTo,
-          active: to
-            ? this.$route.path === to
-            : this.$route.path.startsWith(getTo),
+          active: this.$route.path.startsWith(getTo),
         }
       }
 
