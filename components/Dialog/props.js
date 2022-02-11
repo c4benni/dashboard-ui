@@ -2,7 +2,7 @@ import { undefinedProp, undefinedStringProp } from '../utils'
 
 const backdropWillChange = 'will-change-[opacity]'
 const backdropActiveTransition = `${backdropWillChange} transition-opacity`
-const backdropBeforeTransition = `opacity-0 ${backdropWillChange}`
+const backdropBeforeTransition = `opacity-[0!important] ${backdropWillChange}`
 
 export const defaultBackdropTransition = {
     enterClass: backdropBeforeTransition,
