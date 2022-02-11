@@ -1,4 +1,4 @@
-![screenshot](/static/screenshot.png)
+![screenshot](https://res.cloudinary.com/c4benn/image/upload/v1644583895/untitledUi/screenshot_cnnvb1.png)
 
 <div align="center">
   
