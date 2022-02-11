@@ -37,7 +37,7 @@ export default {
         props:{
           to: this.to,
         },
-        staticClass: 'rounded-sm h-20 flex justify-center items-center text-gray-700 font-medium text-base can-hover:hover:bg-gray-25 border border-white can-hover:hover:border-gray-25 transition-opacity can-hover:active:opacity-90 active:opacity-80 focus:border-gray-300 focus:ring-4 focus:ring-gray-25 py-4 px-6 outline-none transition-shadow',
+        staticClass: 'select-none rounded-sm h-20 flex justify-center items-center text-gray-700 font-medium text-base can-hover:hover:bg-gray-25 border border-white can-hover:hover:border-gray-25 transition-opacity can-hover:active:opacity-90 active:opacity-80 focus:border-gray-300 focus:ring-4 focus:ring-gray-25 py-4 px-6 outline-none transition-shadow',
         class:[{'bg-white': !this.current, 'bg-gray-50':this.current}],
         on:{
           ...this.$listeners
