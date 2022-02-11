@@ -1,6 +1,9 @@
-# dashboard-ui
+<div align="center">
+![image](/static/screenshot.png)
 
+# dashboard-ui
 ## Build Setup
+</div>
 
 ```bash
 # install dependencies
