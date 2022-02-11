@@ -1,6 +1,3 @@
-<template>
-  <Component :is="toRender" role="img" :aria-label="label" :height="height || size" :width="width || size" v-bind="$attrs" v-on="$listeners"/>
-</template>
 
 <script>
 import {
@@ -51,5 +48,17 @@ export default {
       return formatIconName()
     },
   },
+  render(h){
+    return h(this.toRender, {
+      attrs:{
+        role:'img',
+        'aria-label': this.label,
+        height:this.height||this.size,
+        width:this.width||this.size,
+        ...this.$attrs
+      },
+      on:{...this.$listeners}
+    })
+  }
 }
 </script>
