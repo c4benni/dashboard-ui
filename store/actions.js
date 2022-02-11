@@ -18,6 +18,7 @@ export default {
                 is: '',
                 orientation: '',
                 isMobile: false,
+                isTab: false,
             })
         }
 
@@ -26,6 +27,7 @@ export default {
                 ...state.breakpoint,
                 ...payload,
                 isMobile: /xxs|xs|sm/.test(payload.is),
+                isTab: payload.is === 'md',
             })
         }
     },
