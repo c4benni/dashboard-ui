@@ -14,3 +14,12 @@
   animation-iteration-count: var(--appear-flash, 1);
   animation-timing-function: var(--appear-ease, cubic-bezier(0.4, 0, 0.2, 1));
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin {
+  animation: spin 1s linear infinite !important;
+}

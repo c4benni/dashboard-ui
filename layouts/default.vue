@@ -1,10 +1,12 @@
 <template>
   <div>
-    <AppHeader />
+    <div :class="{'sr-only': !appMounted}">
+      <AppHeader />
 
-    <KeepAlive>
-      <Nuxt />
-    </KeepAlive>
+      <KeepAlive>
+        <Nuxt />
+      </KeepAlive>
+    </div>
 
     <div v-if="!appMounted" class="app-loading">
       <Icon name="spinner" size="56" class="spinner" />
