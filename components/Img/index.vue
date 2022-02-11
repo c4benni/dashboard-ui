@@ -17,7 +17,7 @@ import { Cloudinary } from 'cloudinary-core'
 
 import { requiredStringProp, undefinedStringProp } from '../utils'
 
-const cloudinary = new Cloudinary({ cloud_name: 'c4benn' })
+const cloudinary = new Cloudinary({ cloud_name: 'c4benn', secure: true })
 
 export default {
   name: 'Img',
