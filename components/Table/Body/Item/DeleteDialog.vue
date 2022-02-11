@@ -5,7 +5,7 @@
     @update:modelValue="toggle"
   >
     <div
-      class="inline-block align-bottom bg-white rounded text-left overflow-hidden shadow-xl transform transition-all sm:my-16 sm:align-middle sm:max-w-lg sm:w-full"
+      class="inline-block align-bottom bg-white rounded text-left overflow-hidden shadow-xl transform transition-all sm:my-16 sm:align-middle sm:max-w-lg sm:w-full mx-8 md:mx-0"
     >
       <div class="bg-white px-8 pt-10 pb-8 sm:p-12 sm:pb-8">
         <div class="sm:flex sm:items-start">
