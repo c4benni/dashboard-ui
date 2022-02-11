@@ -16,7 +16,7 @@
         size="custom"
         weight="500"
         variant="title"
-        class="flex items-center mr-8 text-[16.5px] md:text-[20px] not-sr-only"
+        class="flex items-center mr-8 text-[16.5px] md:text-[20px] md:sr-only lg:not-sr-only"
       >
         Untitled UI
       </UiText>
