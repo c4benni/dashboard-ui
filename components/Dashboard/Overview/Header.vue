@@ -15,17 +15,24 @@
 
     <Spacer />
 
-    <Search v-model="search" class="w-160" />
+    <Search
+      v-model="search"
+      :class="[{ 'w-160': !breakpoint.isTab }]"
+      :icon-only="breakpoint.isTab"
+    />
   </header>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'DashboardOverviewHeader',
   data: () => ({
     search: '',
   }),
   computed: {
+    ...mapState(['breakpoint']),
     links() {
       const link = (title) => {
         const to = `/dashboard/${title.toLowerCase().replace(/\s+/g, '-')}`
