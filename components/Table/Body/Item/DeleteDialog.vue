@@ -91,7 +91,7 @@ export default {
 
       return [
         action(undefined, 'Delete', undefined, true),
-        action('secondary gray', 'Cancel', 'sm:mt-0 mt-6', true, true),
+        action('secondary gray', 'Cancel', 'sm:mt-0 mt-6', false, true),
       ]
     },
   },
