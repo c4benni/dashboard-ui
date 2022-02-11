@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[51],{464:function(t){t.exports=JSON.parse('[{"title":"Total customers","total":2420,"trend":"up","percent":40},{"title":"Members","total":1210,"trend":"down","percent":10},{"title":"Active now","total":316,"trend":"up","percent":20}]')}}]);
