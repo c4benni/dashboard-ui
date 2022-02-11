@@ -1,19 +1,28 @@
 <template>
   <div
-    class="h-22 rounded flex justify-start items-center shadow-xs border border-gray-300 bg-white focus-within:border transition-shadow relative"
+    class="h-22 rounded flex justify-start items-center shadow-xs border border-gray-300 bg-white focus-within:border transition-[shadow,opacity] relative"
     :class="[
       {
         'focus-within:border-primary-300 focus-within:ring-4 focus-within:ring-primary-100':
           !disabled,
         'cursor-not-allowed border-dotted': disabled,
+        'w-fit active:opacity-90':iconOnly
       },
     ]"
   >
-    <span class="flex justify-center items-center w-10 h-10 mr-4 relative z-1 ml-[13px] pointer-events-none">
+    <span
+      class="flex justify-center items-center w-10 h-10 relative z-1 ml-[13px] pointer-events-none"
+      :class="{ 'mr-4': !iconOnly, 'mr-[13px]': iconOnly }"
+    >
       <Icon
         name="search"
         class="w-[15px] h-[15px]"
-        :class="[{ 'text-gray-500': !disabled, 'text-gray-300': disabled }]"
+        :class="[
+          {
+            'text-gray-500': !disabled,
+            'text-gray-300': disabled,
+          },
+        ]"
       />
     </span>
 
@@ -25,12 +34,14 @@
       type="search"
       :placeholder="placeholder"
       :value="getValue"
-      class="input appearance-none h-full w-full outline-none text-base placeholder:text-base py-5 bg-white absolute inset-0 pr-4 pl-20 rounded-[inherit]"
+      class="input appearance-none outline-none text-base placeholder:text-base py-5 bg-white rounded-[inherit]"
       :class="[
         {
           'placeholder:text-gray-500 text-gray-900': !disabled,
           'placeholder:text-gray-300 text-gray-600 pointer-events-none':
             disabled,
+          'sr-only': iconOnly,
+          'absolute inset-0 pr-4 pl-20 h-full w-full': !iconOnly,
         },
       ]"
       v-on="$listeners"
@@ -55,6 +66,7 @@ export default {
     disabled: Boolean,
     autofocus: Boolean,
     modelValue: undefinedStringProp,
+    iconOnly: Boolean,
     placeholder: {
       type: String,
       default: 'Search',
