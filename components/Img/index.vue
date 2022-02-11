@@ -8,7 +8,7 @@
     crossorigin="anonymous"
     :data-src-cache="publicId"
     loading="lazy"
-    class="text-[transparent] text-[1px]"
+    class="text-[transparent] text-[1px] select-none"
   />
 </template>
 
