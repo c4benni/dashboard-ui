@@ -1,4 +1,3 @@
-
 <script>
 import {
   camelCase,
@@ -14,16 +13,16 @@ export default {
     title: undefinedStringProp,
     height: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     width: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     size: {
-      type:String,
-      default:'20'
-    }
+      type: String,
+      default: '20',
+    },
   },
   computed: {
     // format `name` to match valid jsx syntax. Eg edit will be IconEdit
@@ -48,17 +47,20 @@ export default {
       return formatIconName()
     },
   },
-  render(h){
-    return h(this.toRender, {
-      attrs:{
-        role:'img',
-        'aria-label': this.label,
-        height:this.height||this.size,
-        width:this.width||this.size,
-        ...this.$attrs
-      },
-      on:{...this.$listeners}
-    })
-  }
+  render(h) {
+    return h('span', [
+      h(this.toRender, {
+        attrs: {
+          role: 'img',
+          'aria-label': this.label,
+          height: this.height || this.size,
+          width: this.width || this.size,
+          ...this.$attrs,
+        },
+        staticClass:'w-full h-full',
+        on: { ...this.$listeners },
+      }),
+    ])
+  },
 }
 </script>
