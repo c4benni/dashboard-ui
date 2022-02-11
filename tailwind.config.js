@@ -24,5 +24,5 @@ module.exports = {
             addVariant('portrait', '@media (orientation: portrait)')
         }),
     ],
-    important: true,
+    // important: true,
 }
