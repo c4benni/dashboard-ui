@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-22 px-7 rounded flex justify-start items-center shadow-xs border border-gray-300 bg-white focus-within:border transition-shadow"
+    class="h-22 rounded flex justify-start items-center shadow-xs border border-gray-300 bg-white focus-within:border transition-shadow relative"
     :class="[
       {
         'focus-within:border-primary-300 focus-within:ring-4 focus-within:ring-primary-100':
@@ -9,7 +9,7 @@
       },
     ]"
   >
-    <span class="flex justify-center items-center w-10 h-10 mr-4">
+    <span class="flex justify-center items-center w-10 h-10 mr-4 relative z-1 ml-[13px] pointer-events-none">
       <Icon
         name="search"
         class="w-[15px] h-[15px]"
@@ -25,7 +25,7 @@
       type="search"
       :placeholder="placeholder"
       :value="getValue"
-      class="input appearance-none h-full w-full outline-none text-base placeholder:text-base py-5 bg-white"
+      class="input appearance-none h-full w-full outline-none text-base placeholder:text-base py-5 bg-white absolute inset-0 pr-4 pl-20 rounded-[inherit]"
       :class="[
         {
           'placeholder:text-gray-500 text-gray-900': !disabled,
