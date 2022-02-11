@@ -136,7 +136,7 @@ export default {
     },
 
     router: {
-        base: '/dashboard-ui',
+        base: '/dashboard-ui/',
         middleware: 'redirect',
     },
 
