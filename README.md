@@ -1,10 +1,17 @@
+![screenshot](/static/screenshot.png)
+
 <div align="center">
-![image](/static/screenshot.png)
-
-# dashboard-ui
+  
+# Dashboard-ui
+  
+#### Minimalist Dashboard design made with Nuxt & Tailwind.
+  
+<hr/>
+  
 ## Build Setup
+  
 </div>
-
+  
 ```bash
 # install dependencies
 $ npm install
