@@ -99,30 +99,21 @@
         </div>
       </Dialog>
 
-      <button
-        title="Profile"
-        class="w-20 h-20 rounded-full cursor-pointer bg-primary-50 can-hover:hover:opacity-90 active:opacity-80 can-hover:active:opacity-80 transition-opacity outline-none focus:ring-4 ring-primary-50"
-      >
-        <Img
-          v-if="user"
-          :src="user.avatar"
-          alt="Profile image"
-          width="40"
-          height="40"
-          class="object-cover"
-        />
-      </button>
+      <AppHeaderProfileButton/>
     </template>
 
     <template v-else>
       <Spacer />
 
       <Button
+        v-model="sheet"
         icon="only"
         icon-name="menu"
         title="Open navigation"
         hierarchy="tertiary gray"
       />
+
+     <AppHeaderBottomSheet v-model="sheet"/>
     </template>
   </header>
 </template>
@@ -135,24 +126,22 @@ export default {
   data: () => ({
     dialog: false,
     dialogTitle: '',
+    sheet: false,
   }),
   async fetch() {
     await this.getUser()
   },
   computed: {
     ...mapState(['user', 'breakpoint']),
-
     links() {
       const link = (title, to) => {
         const getTo = `/${title.toLowerCase().replace(/\s+/g, '-')}`
-
         return {
           title,
           to: to || getTo,
           active: this.$route.path.startsWith(getTo),
         }
       }
-
       return [
         link('Home', '/'),
         link('Dashboard', '/dashboard/overview'),
@@ -171,7 +160,6 @@ export default {
           this.toggleDialog(true)
         },
       })
-
       return [icon('setting', 'Setting'), icon('bell', 'Notifications')]
     },
   },
