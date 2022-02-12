@@ -82,7 +82,7 @@ export default {
           },
         },
         staticClass:
-          'font-medium items-center outline-none justify-center flex-row select-none',
+          'font-medium items-center outline-none justify-center flex-row select-none touch-manipulation',
         class: [
           {
             [`${
