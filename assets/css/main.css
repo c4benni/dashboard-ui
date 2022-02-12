@@ -18,7 +18,7 @@ html {
   overflow: hidden;
 
   /* fix tw-ring-inset bug */
-  --tw-ring-inset: 0 0 0 0px #0000;
+  --tw-ring-inset: 0 0 0 0px #0000,;
 }
 
 /* lock html scroll */
