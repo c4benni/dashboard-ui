@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[34],{483:function(t,e,l){"use strict";l.r(e);var n={name:"MetricGroup"},r=l(14),component=Object(r.a)(n,(function(){var t=this,e=t.$createElement;return(t._self._c||e)("ul",{staticClass:"grid md:grid-flow-col gap-10 md:gap-12"},[t._t("default")],2)}),[],!1,null,null,null);e.default=component.exports}}]);
