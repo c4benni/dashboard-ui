@@ -1,36 +1,38 @@
 <template>
   <!-- fetch images within 56px of viewport. loading='lazy' isn't widely supported -->
-  <Intersection
-    v-slot="{ isIntersecting }"
-    once
-    :config="{ rootMargin: '56px' }"
-    :disabled="hasLoaded"
-  >
-    <a
-      v-if="!isIntersecting && !hasLoaded"
-      :title="alt"
-      :href="publicId"
-      target="_blank"
-      rel="noreferrer noopener"
-      :style="{
-        height: `${height || size}px`,
-        width: `${width || size}px`,
-      }"
-      class="inline-block"
-    />
+  <ClientOnly>
+    <Intersection
+      v-slot="{ isIntersecting }"
+      once
+      :config="{ rootMargin: '56px' }"
+      :disabled="hasLoaded"
+    >
+      <a
+        v-if="!isIntersecting && !hasLoaded"
+        :title="alt"
+        :href="publicId"
+        target="_blank"
+        rel="noreferrer noopener"
+        :style="{
+          height: `${height || size}px`,
+          width: `${width || size}px`,
+        }"
+        class="inline-block"
+      />
 
-    <img
-      v-else
-      :src="publicId"
-      :alt="alt"
-      :width="width || size"
-      :height="height || size"
-      decoding="async"
-      crossorigin="anonymous"
-      class="text-[transparent] text-[1px] select-none"
-      @load="imgLoaded"
-    />
-  </Intersection>
+      <img
+        v-else
+        :src="publicId"
+        :alt="alt"
+        :width="width || size"
+        :height="height || size"
+        decoding="async"
+        crossorigin="anonymous"
+        class="text-[transparent] text-[1px] select-none"
+        @load="imgLoaded"
+      />
+    </Intersection>
+  </ClientOnly>
 </template>
 
 <script>
@@ -59,7 +61,7 @@ export default {
     intersected: false,
   }),
   computed: {
-    hasLoaded(){
+    hasLoaded() {
       return !!loadedSrc[this.publicId]
     },
     publicId() {
@@ -76,10 +78,10 @@ export default {
       })
     },
   },
-  methods:{
-    imgLoaded(){
-      loadedSrc[this.publicId] = 1;
-    }
-  }
+  methods: {
+    imgLoaded() {
+      loadedSrc[this.publicId] = 1
+    },
+  },
 }
 </script>
