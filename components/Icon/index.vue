@@ -48,7 +48,7 @@ export default {
     },
   },
   render(h) {
-    return h('span', [
+    return h('span', { staticClass: 'inline-block' }, [
       h(this.toRender, {
         attrs: {
           role: 'img',
@@ -57,7 +57,7 @@ export default {
           width: this.width || this.size,
           ...this.$attrs,
         },
-        staticClass:'w-full h-full',
+        staticClass: 'w-full h-full',
         on: { ...this.$listeners },
       }),
     ])
