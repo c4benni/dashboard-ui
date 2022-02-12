@@ -99,7 +99,7 @@
         </div>
       </Dialog>
 
-      <AppHeaderProfileButton/>
+      <AppHeaderProfileButton />
     </template>
 
     <template v-else>
@@ -113,7 +113,9 @@
         hierarchy="tertiary gray"
       />
 
-     <AppHeaderBottomSheet v-model="sheet"/>
+      <ClientOnly>
+        <AppHeaderBottomSheet v-model="sheet" />
+      </ClientOnly>
     </template>
   </header>
 </template>
