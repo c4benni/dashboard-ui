@@ -22,6 +22,7 @@ module.exports = {
             ])
             addVariant('landscape', '@media (orientation: landscape)')
             addVariant('portrait', '@media (orientation: portrait)')
+            addVariant('height-sm', '@media (max-height: 500px)')
         }),
     ],
     // important: true,
