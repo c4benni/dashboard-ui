@@ -13,7 +13,7 @@ module.exports = {
     darkMode: 'class',
     theme,
     plugins: [
-        plugin(function({ addVariant, e }) {
+        plugin(function({ addVariant }) {
             addVariant('can-hover', ['@media (pointer: fine) and (hover: hover)'])
             addVariant('no-hover', ['@media (pointer: coarse) and (hover: none)'])
             addVariant('supports-blur', ['@supports (backdrop-filter: blur(1px))'])
