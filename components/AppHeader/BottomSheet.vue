@@ -35,26 +35,30 @@
 
           <nav
             class="my-8 rounded bg-gray-50 w-[95%] mx-auto border border-gray-100"
-            @touchstart="()=>{}"
+            @touchstart="() => {}"
           >
             <ul class="grid divide-y">
               <UiText
-                v-for="(link,i) in links"
+                v-for="(link, i) in links"
                 :key="link.title"
                 tag="li"
                 class="border-gray-200 p-8 height-sm:p-6 pr-8 flex items-center justify-between focus-within:ring-4 ring-gray-200 active:opacity-80 transition-opacity relative"
                 :class="{
-                    'rounded-t': i === 0,
-                    'rounded-b': i === links.length - 1
+                  'rounded-t': i === 0,
+                  'rounded-b': i === links.length - 1,
                 }"
                 :variant="link.active ? 'title' : 'body'"
                 :weight="link.active ? '500' : '400'"
                 @click="close"
               >
-                <NuxtLink :to="link.to" :aria-label="link.title" class="absolute inset-0">
+                <NuxtLink
+                  :to="link.to"
+                  :aria-label="link.title"
+                  class="absolute inset-0"
+                >
                 </NuxtLink>
 
-                  {{ link.title }}
+                {{ link.title }}
 
                 <Icon
                   name="paginationArrow"
@@ -72,12 +76,12 @@
 
         <div class="flex justify-between items-center px-8 py-6">
           <Button
-            v-for="icon in icons"
-            :key="icon"
+            v-for="(icon, i) in icons"
+            :key="icon.icon"
             icon="only"
-            :icon-name="icon"
-            :title="icon"
-            hierarchy="tertiary gray"
+            :icon-name="icon.icon"
+            :title="icon.title"
+            :hierarchy="icon.hierarchy"
           />
 
           <AppHeaderProfileButton />
@@ -99,7 +103,6 @@ export default {
   },
   data: () => ({
     search: '',
-    icons: ['zap', 'setting', 'bell'],
   }),
   computed: {
     links() {
@@ -117,6 +120,15 @@ export default {
         link('User reports'),
       ]
     },
+    icons(){
+      const icon = (title, icon, hierarchy) =>({title,icon,hierarchy: hierarchy || 'tertiary grah'});
+
+      return [
+        icon('Upgrade now', 'zap', 'secondary color'),
+        icon('Setting', 'setting',),
+        icon('Notifications', 'bell',),
+      ]
+    }
   },
   methods: {
     toggle(value) {
