@@ -108,7 +108,7 @@ export default {
       validator: (prop) => prop >= 0.005 && prop <= 1,
     },
     // usefull for height
-    contentClass: undefinedProp([String,Array,Object])
+    contentClass: undefinedProp([String, Array, Object]),
   },
   emits: ['update:ratio', 'update:modelValue'],
   data() {
@@ -171,20 +171,22 @@ export default {
   },
   methods: {
     async onIntersectionEntry(e) {
-      const { intersectionRatio } = e
+      const { intersectionRatio, boundingClientRect } = e
 
       this.$emit('update:ratio', intersectionRatio)
 
-      await nextAnimFrame()
+      if (boundingClientRect.top >= 0) {
+        await nextAnimFrame()
 
-      this.ratio = intersectionRatio
+        this.ratio = intersectionRatio
 
-      if (intersectionRatio <= this.minVisibility && this.isActive) {
-        this.swipedOut = true
+        if (intersectionRatio <= this.minVisibility && this.isActive) {
+          this.swipedOut = true
 
-        await this.$nextTick()
+          await this.$nextTick()
 
-        this.close()
+          this.close()
+        }
       }
     },
   },
