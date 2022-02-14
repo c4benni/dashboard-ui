@@ -39,6 +39,12 @@ export default {
   computed: {
     ...mapState(['appMounted']),
   },
+  // route to dashboard/overview on initial load if url is "/"
+  beforeCreate(){
+    if(this.$route.path === '/'){
+      this.$router.replace('/dashboard/overview')
+    }
+  },
   beforeMount() {
     initBreakpoint.call(this)
   },
