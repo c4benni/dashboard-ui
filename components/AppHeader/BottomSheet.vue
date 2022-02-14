@@ -121,7 +121,7 @@ export default {
       ]
     },
     icons(){
-      const icon = (title, icon, hierarchy) =>({title,icon,hierarchy: hierarchy || 'tertiary grah'});
+      const icon = (title, icon, hierarchy) =>({title,icon,hierarchy: hierarchy || 'tertiary gray'});
 
       return [
         icon('Upgrade now', 'zap', 'secondary color'),
