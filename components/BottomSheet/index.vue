@@ -71,11 +71,6 @@
 </template>
 
 <script>
-// Bottom sheet is actually a dialog on fleek. It's useful on mobile devices or mini tabs to display an easily swipable dialog to mimc the native feel.
-// This is quite aa complex component that uses css scroll-snapping, and intersectionObserver for its main functionality.
-// Using scroll-snapping helps reduce the need of an onScroll or onTouchmove, or any painful event that blocks the main-thread.
-// Intersection observer is used to create a nice fading out backdrop effect, also to determine when the backdrop has gone away enough to close it automatically.
-
 import { isHTML, nextAnimFrame, undefinedProp } from '../utils'
 import overlayMixin from '../utils/overlayMixin'
 import { getDefaultTransitionClasses } from '../utils/overlayMixin/props'
@@ -84,9 +79,6 @@ export default {
   name: 'BottomSheet',
   mixins: [overlayMixin],
   props: {
-    //   uses Dialog props with a little tweak to `transition` props.
-    // threholdLength is to set dynamic thresholds for observing.
-    // lesser value, fewer frames, idle is 200.
     thresholdLength: {
       type: Number,
       default: 200,
@@ -95,29 +87,20 @@ export default {
       type: Object,
       default: () => getDefaultTransitionClasses('translate-y-[100%]'),
     },
-    // to stop the ratio animation
     disableRatio: Boolean,
-    // add snap-mandatory css class;
     snapMandatory: Boolean,
-    // make only the content swipable by adding pointer-events-none to the backdrop
     swipeContentOnly: Boolean,
-    // percentage of content that should be visible unless an automatic close will happen
     minVisibility: {
       type: Number,
       default: 0.01,
       validator: (prop) => prop >= 0.005 && prop <= 1,
     },
-    // usefull for height
     contentClass: undefinedProp([String, Array, Object]),
   },
   emits: ['update:ratio', 'update:modelValue'],
   data() {
     return {
-      // ratio of swiping. Usefull to create an animation, because a css variable `var(--ratio)` will be made available on the root element. This means custom transitions can be made when exiting only by scrolling. Entrance transition is and regular exiting (via v-model e.g tapping backdrop) will also trigger the ratio as the ratio is actually the content's intersectionRect
       ratio: null,
-
-      // when the content has been swiped out, this will be true; then on renderRoot watcher, this will be false;
-      // when true, invisible class will be added to the root element to avoid animation jumping around;
       swipedOut: false,
     }
   },
@@ -150,10 +133,6 @@ export default {
     },
   },
   watch: {
-    // renderRoot is passed in from the mixin;
-    // when this is active, there's a window of nextAnimFrame & nextTick
-    // before the content and backdrop will kickstart their transition
-    // and on nextTick, the root will be available, so this is the best time to reset the scrollTop position to suit the bottomSheet;
     renderRoot(n) {
       this.swipedOut = false
 
